@@ -1,0 +1,19 @@
+body {
+    background: #fafafa;
+}
+
+.alert-light {
+    border-color: #bfbfbf;
+    text-align: justify;
+    line-height: 1.5;
+}
+.registration {
+    text-transform: uppercase;
+    background: red;
+}
+.footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+ }

@@ -1,0 +1,9 @@
+{% extends 'blog/main.html' %}
+{% block main_section %}
+        <h2>Вход</h2>
+        <form method="post" style="font-weight: bold; display: inline-block; width: 210px;">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Войти</button>
+        </form>
+{% endblock main_section %}

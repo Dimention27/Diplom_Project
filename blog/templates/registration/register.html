@@ -1,0 +1,29 @@
+{% extends 'blog/main.html' %}
+{% block main_section %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Регистрация</h2>
+    <form method="post" style="font-weight: bold; display: inline-block; width: 210px;">
+        {% csrf_token %}
+        Имя пользователя: <input type="text" name="username"><br>
+        Email: <input type="email" name="email"><br>
+        Пароль: <input type="password" name="password"><br>
+        Пароль еще раз: <input type="password" name="password2"><br>
+
+        <input type="submit" style="margin-top: 15px" value="Регистрация">
+    </form>
+</body>
+</html>
+{% endblock main_section %}
+
+
+<!-- Имя пользователя: <input type="text" name="Имя пользователя"><br>-->
+<!--                Email: <input type="email" name="Email"><br>-->
+<!--                Пароль: <input type="password" name="Пароль"><br>-->
+<!--                Пароль еще раз: <input type="password" name="Подтвердите пароль"><br>-->
+<!--        <button type="submit" style="margin-top: 15px">Зарегистрироваться</button>-->
+<!--style="font-weight: bold; display: inline-block; width: 210px;"-->

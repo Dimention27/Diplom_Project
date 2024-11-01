@@ -1,0 +1,11 @@
+--CREATE TABLE IF NOT EXISTS mainmenu (
+--id INTEGER PRIMARY KEY AUTOINCREMENT,
+--title TEXT NOT NULL,
+--url TEXT NOT NULL)
+
+CREATE TABLE IF NOT EXISTS posts (
+id integer PRIMARY KEY AUTOINCREMENT,
+title text NOT NULL,
+text text NOT NULL,
+time integer NOT NULL
+);
