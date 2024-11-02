@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.models import User
-from django.core.exceptions import PermissionDenied
+from django.contrib.auth.models import User, Permission
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.views.generic import TemplateView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from .forms import PostForm
 from .models import New
@@ -97,10 +97,12 @@ def home(request):
     return render(request, 'blog/home.html', data)
 
 
+@login_required(login_url='/login/')
 def contacts(request):
     return render(request, 'blog/contacts.html', {'title': 'Контакты'})
 
 
+@login_required(login_url='/login/')
 def add_post(request):
     return render(request, 'blog/post_edit.html', {'title': 'Добавить статью'})
 
