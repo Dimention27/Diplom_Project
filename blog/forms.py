@@ -7,3 +7,4 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = New
         fields = ('title', 'text', 'image')
+

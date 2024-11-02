@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.views.generic import TemplateView, CreateView
-
 
 from .forms import PostForm
 from .models import New
@@ -102,7 +102,6 @@ def contacts(request):
     return render(request, 'blog/contacts.html', {'title': 'Контакты'})
 
 
-@login_required(login_url='/login/')
 def add_post(request):
     return render(request, 'blog/post_edit.html', {'title': 'Добавить статью'})
 
@@ -139,6 +138,7 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
+@login_required(login_url='/login/')
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
@@ -166,3 +166,6 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+
+

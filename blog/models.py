@@ -17,5 +17,3 @@ class New(models.Model):
     class Meta:
         verbose_name = 'статьи'
         verbose_name_plural = 'статья'
-
-
