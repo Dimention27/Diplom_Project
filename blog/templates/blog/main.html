@@ -25,7 +25,7 @@
                         <a class="nav-link" href="/contacts">О нас</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/add_post">Добавить статью</a>
+                        <a class="nav-link" href="{% url 'post_new' %}">Добавить статью</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="/register">Регистрация</a>
@@ -42,9 +42,6 @@
             {% endif %}
             {% block content %}
             {% endblock content %}
-<!--            <div class="navbar-nav bg-white">-->
-<!--                <a href="accounts/login" class="btn btn-outline-secondary">Войти</a>-->
-<!--            </div>            -->
         </nav>
         <main class="container">
             <div class="row">

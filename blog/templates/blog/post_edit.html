@@ -1,0 +1,17 @@
+{% extends 'blog/main.html' %}
+{% block main_section %}
+<div class="container mt-3 d-flex justify-content-center">
+    <div class="col-lg-8 col-sm-12">
+        <h1>Добавить статью</h1>
+        <form method="POST" class="post-form" enctype="multipart/form-data">
+            {% if perms.blog.add_New %}
+            <p><a href="{% url 'post_new' post.slug %}">Добавить статью</a></p>
+            {% endif %}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class=" save btn btn-success mt-3">Сохранить</button>
+        </form>
+    </div>
+</div>
+{% endblock main_section %}
+

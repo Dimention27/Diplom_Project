@@ -1,13 +1,16 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+from django.views.generic import TemplateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .forms import PostForm
 from .models import New
-# from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
-
-
+from django.views import View
 
 
 #
@@ -99,7 +102,7 @@ def contacts(request):
 
 
 def add_post(request):
-    return render(request, 'blog/add_post.html', {'title': 'Добавить статью'})
+    return render(request, 'blog/post_edit.html', {'title': 'Добавить статью'})
 
 
 def registration(request):
@@ -127,3 +130,37 @@ class RegisterView(TemplateView):
                 return redirect("login")
 
         return render(request, self.template_name)
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(New, pk=pk)
+    return render(request, 'blog/post_detail.html', {'post': post})
+
+
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('/', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_edit.html', {'form': form})
+
+
+def post_edit(request, pk):
+    post = get_object_or_404(New, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user,
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('/', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/post_edit.html', {'form': form})

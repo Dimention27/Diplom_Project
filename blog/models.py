@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -16,3 +17,5 @@ class New(models.Model):
     class Meta:
         verbose_name = 'статьи'
         verbose_name_plural = 'статья'
+
+
